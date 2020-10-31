@@ -1,39 +1,77 @@
-import React, {useState} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
+import React, { useState } from 'react'
+import axios from 'axios'
+import { InputGroup, Input, Button } from 'reactstrap'
 
-const Example = (props) => {
-    const [movieTitle, setMovieTitle] = useState("");
-    const [movieYear, setMovieYear] = useState("");
-    const [moviePoster, setMoviePoster] = useState("");
-    const [movieId, setMovieYear] = useState("");
-    
-    const onSubmitData = () => {
+export default function AddMovie () {
+  const [title, setTitle] = useState('')
+  const [year, setYear] = useState('')
+  const [poster, setPoster] = useState('')
+  const [imdbId, setId] = useState('')
+  const [type, setType] = useState('')
 
-    }
+  function onClickInsert () {
+    console.log(imdbId)
+    axios
+      .post(`http://localhost:5000/addMovie`, {
+        title,
+        year,
+        poster,
+        imdbId,
+        type
+      })
+      .then(res => {
+        console.log(res)
+        console.log(res.data)
+      })
+  }
+
   return (
-      <Container>
-    <Form>
-      <FormGroup>
-        <Label for="movieTitle">Movie name</Label>
-        <Input type="text" name="title" id="movieTitle" placeholder="Enter name of the movie" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="movieYear">Movie year</Label>
-        <Input type="text" name="year" id="movieYear" placeholder="Enter year of release" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="movieId">Movie ID</Label>
-        <Input type="text" name="imdbId" id="movieId" placeholder="Enter IMDB ID" />
-      </FormGroup>
-      <FormGroup>
-        <Label for="moviePoster">Poster URL</Label>
-        <Input type="text" name="poster" id="moviePoster" placeholder="Enter Poster URL" />
-      </FormGroup>
-      
-      <Button onClick={onSubmitData}>Submit</Button>
-    </Form>
-    </Container>
-  );
-}
+    <section className='search-section'>
+      <p>Enter the Movie Name</p>
 
-export default Example;
+      <Input
+        placeholder='Movie Name'
+        onChange={e => {
+          setTitle(e.target.value)
+        }}
+      />
+      <br />
+      <p>Enter the Year</p>
+      <Input
+        placeholder='Enter The Year'
+        onChange={e => {
+          setYear(e.target.value)
+        }}
+      />
+      <br />
+      <p>Enter the imdbID</p>
+      <Input
+        placeholder='Enter The ID'
+        onChange={e => {
+          setId(e.target.value)
+        }}
+      />
+      <br />
+      <p>Enter the Type</p>
+      <Input
+        placeholder='Enter The type'
+        onChange={e => {
+          setType(e.target.value)
+        }}
+      />
+      <br />
+      <p>Enter the Poster Link</p>
+
+      <Input
+        placeholder='Enter The Poster link'
+        onChange={e => {
+          setPoster(e.target.value)
+        }}
+      />
+      <br />
+      <Button color='success' onClick={onClickInsert}>
+        Insert Data
+      </Button>
+    </section>
+  )
+}
