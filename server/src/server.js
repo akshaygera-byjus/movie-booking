@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 
 const routes = require("./routes");
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 const url = process.env.MONGODB_URI;
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -22,6 +22,11 @@ db.once('open', async () => {
     app.use(cors());
     app.use(bodyParser.json());
     app.use('/',routes())
+
+    if(process.env.NODE_ENV === 'production') 
+    {
+      app.use(express.static('../../client/build'))
+    }
     
     
     app.listen(port, () => {

@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,KACE,YACF,CAEA,QACE,eAAgB,CAChB,cAAe,CACf,QACF","file":"main.df3c3996.chunk.css","sourcesContent":["main {\n  height: 100vh;\n}\n\n.footer {\n  margin-top: 60px;\n  position: fixed;\n  bottom: 0;\n}\n"]}
