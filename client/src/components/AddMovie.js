@@ -55,14 +55,6 @@ export default function AddMovie () {
         }}
       />
       <br />
-      <p>Enter the Type</p>
-      <Input
-        placeholder='Enter The type'
-        onChange={e => {
-          setType(e.target.value)
-        }}
-      />
-      <br />
       <p>Enter the Poster Link</p>
 
       <Input
