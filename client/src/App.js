@@ -55,7 +55,7 @@ export default function App() {
           {data && data.length &&
             data.map((movie) => {
               return (
-                <Col md={3} key={movie.imdbID}>
+                <Col md={3} key={movie.imdbId}>
                   <Card>
                     <CardImg
                       top

@@ -5,20 +5,24 @@ import { Container } from "reactstrap";
 export default function BookingPage() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  const { movieId } = useParams();
+  const { imdbId } = useParams();
   const history = useHistory();
 
   useEffect(() => {
     getMovieDetail();
+    console.log("use effect called");
   }, []);
 
   function getMovieDetail() {
+    console.log(imdbId);
     setLoading(true);
-    fetch(`http://localhost:5000/getMovies/${movieId}`)
+    fetch(`http://localhost:5000/getMovieById/${imdbId}`)
       .then((response) => response.json())
       .then((result) => {
+        const [movieDetail] = result;
         setLoading(false);
-        setData(result);
+        setData(movieDetail);
+        console.log(result);
       })
       .catch((error) => {
         setLoading(false);
@@ -41,11 +45,10 @@ export default function BookingPage() {
           <p>
             <img src={data.poster} alt="img" className="img-thumbnail" />
           </p>
-          <p>PLOT</p>
-          <p>{data.plot}</p>
-          <h5>Rating: {data.imdbRating}</h5>
-          <h6>Language: {data.language}</h6>
-          <h6>Country: {data.country}</h6>
+          <p></p>
+          <p>{data.title}</p>
+          <h5>IMDB ID: {data.imdbId}</h5>
+          <h6>Year: {data.year}</h6>
           <br />
           <button
             type="button"

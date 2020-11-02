@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { InputGroup, Input, Button } from 'reactstrap'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { InputGroup, Input, Button } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 export default function AddMovie () {
-  const [title, setTitle] = useState('')
-  const [year, setYear] = useState('')
-  const [poster, setPoster] = useState('')
-  const [imdbId, setId] = useState('')
-  const [type, setType] = useState('')
+  const [title, setTitle] = useState('');
+  const [year, setYear] = useState('');
+  const [poster, setPoster] = useState('');
+  const [imdbId, setId] = useState('');
+  const [type, setType] = useState('');
+
+  const history = useHistory();
 
   function onClickInsert () {
-    console.log(imdbId)
+    console.log(imdbId);
     axios
       .post(`http://localhost:5000/addMovie`, {
         title,
@@ -71,6 +74,13 @@ export default function AddMovie () {
       <br />
       <Button color='success' onClick={onClickInsert}>
         Insert Data
+      </Button>
+      <Button
+        type='button'
+        className='btn btn-danger'
+        onClick={() => history.goBack()}
+      >
+        Go Back
       </Button>
     </section>
   )

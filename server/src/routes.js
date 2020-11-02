@@ -10,6 +10,14 @@ module.exports = function(){
         console.log(moviesData);
         return res.send(moviesData);
     });
+
+    router.get('/getMovieById/:imdbId', async (req, res) => {
+        console.log("inside get movie by ID");
+        const { imdbId } = req.params;
+        const moviesData1 = await Movie.find({imdbId:imdbId});
+        console.log(moviesData1);
+        return res.send(moviesData1);
+    });
     
     router.post('/addMovie', async(req,res) => {
         const {title,year,poster,imdbId} = req.body;
