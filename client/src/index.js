@@ -10,6 +10,7 @@ import Header from "./components/Header";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
+import UpdateMovie from "./components/UpdateMovie";
 
 const history = createBrowserHistory();
 
@@ -20,11 +21,14 @@ ReactDOM.render(
       <Header />
       <main>
         <Switch>
-          <Route path="/booking-page/add-movie">
+          <Route path="/add-movie">
             <AddMovie />
           </Route>
           <Route path="/booking-page/:imdbId">
             <BookingPage />
+          </Route>
+          <Route path="/update-page/:movieId">
+            <UpdateMovie />
           </Route>
           <Route path="/">
             <App />

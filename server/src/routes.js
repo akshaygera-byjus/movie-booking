@@ -32,5 +32,21 @@ module.exports = function(){
         res.json({message:"Movie added successfully"});
     });
 
+    router.delete('/deleteMovie/', async(req,res) => {
+        console.log("inside delete")
+        const {imdbId} = req.body;
+        console.log(imdbId);
+        await Movie.deleteOne({imdbId});
+        res.send({message:"Deleted Successfully"});
+    });
+
+    router.post('/updateMovie/', async (req,res) => {
+        const {title,year,poster,imdbId,movieId} = req.body
+        console.log(`${title} , ${year}`);
+        console.log(`${poster}`);   
+        await Movie.update({imdbId:movieId},{title,year,poster,imdbId});
+        res.send({message:"updated Successfully"});
+    });
+
     return router;
 }

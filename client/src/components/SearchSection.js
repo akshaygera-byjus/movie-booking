@@ -16,7 +16,7 @@ export default function SearchSection(props) {
         <Button color="success" onClick={onClickSearch}>
           Search
         </Button>
-        <Link to={`/booking-page/add-movie`} className='btn btn-primary'>
+        <Link to={`/add-movie`} className='btn btn-primary'>
           Add Movie
         </Link>
       </InputGroup>
